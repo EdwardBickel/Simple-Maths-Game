@@ -82,7 +82,8 @@ function checkLogic() {
     endMessage.textContent = "Sorry! You lost."
     document.body.classList.add("overlay-is-open")
     setTimeout(() => resetButton.focus(), 331)
-}
+  }
+} 
 
 // Clicking overlay button resets the game
 resetButton.addEventListener("click", resetGame)
