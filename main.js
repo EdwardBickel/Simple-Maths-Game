@@ -7,13 +7,12 @@ const progressBar = document.querySelector(".progress-inner")
 const endMessage = document.querySelector(".end-message")
 const resetButton = document.querySelector(".reset-button")
 
-// Step 3. Create variable to store generated problem in memory
 let state = {
   score: 0,
   wrongAnswers: 0
 }
 
-// Step 4. Want to update the problem when the page loads, when a user gets an answer right/worng and restarting the game.
+// Update the problem when page loads, when user gets answer right/worng and restarting game.
 function updateProblem() {
   state.currentProblem = generateProblem()
   problemElement.innerHTML = `${state.currentProblem.numberOne} ${state.currentProblem.operator} ${state.currentProblem.numberTwo}`
@@ -37,10 +36,9 @@ function generateProblem() {
   }
 }
 
-// Step 5. Add a text input field for user
 ourForm.addEventListener("submit", handleSubmit)
 
-// Step 6. Calculate correct answer 
+// Calculate correct answer 
 function handleSubmit(e) {
   e.preventDefault()
 
@@ -70,7 +68,7 @@ function handleSubmit(e) {
   checkLogic()
 }
 
-// Step 7. Limits no. of points to 10 and no. of mistakes to 2
+// Limits no. of points to 10 and no. of mistakes to 2
 function checkLogic() {
   // if you won
   if (state.score === 10) {
@@ -83,14 +81,12 @@ function checkLogic() {
   if (state.wrongAnswers === 3) {
     endMessage.textContent = "Sorry! You lost."
     document.body.classList.add("overlay-is-open")
-    setTimeout(() => resetButton.focus(), 331) /*overlay takes 330ms to animate into view so focus the button 1 sec after. focus() will also enable the user to simply press the enter key to start a new game*/
-  }
+    setTimeout(() => resetButton.focus(), 331)
 }
 
-// Step 10: Clicking overlay button resets the game
+// Clicking overlay button resets the game
 resetButton.addEventListener("click", resetGame)
 
-// Step 8. A function that resets the game
 function resetGame() {
   document.body.classList.remove("overlay-is-open")
   updateProblem()
@@ -101,7 +97,7 @@ function resetGame() {
   renderProgressBar()
 }
 
-// Step 9. Set up progress bar
+// Set up progress bar
 function renderProgressBar() {
   progressBar.style.transform = `scaleX(${state.score / 10})`
 }
